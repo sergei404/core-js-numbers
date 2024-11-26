@@ -275,6 +275,9 @@ function getFibonacciNumber(index) {
   if (index === 0) {
     return 0;
   }
+  if (index === 1 || index === 2) {
+    return 1;
+  }
   return ((1 + index) * index) / 2;
 }
 
@@ -411,7 +414,7 @@ function toPrecision(number, precision) {
  * Number(-5)    => -5
  */
 function getNumberValue(number) {
-  return number instanceof Number ? number.value : number;
+  return number instanceof Number ? number.valueOf() : number;
 }
 /**
  * Returns a boolean value indicating whether the parameter is a number or not.
@@ -458,7 +461,7 @@ function isInteger(number) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  return parseFloat(str);
+  return Number.parseFloat(str);
 }
 
 /**
@@ -476,7 +479,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  return parseInt(str, base);
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -628,11 +631,12 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  if (number < 0) {
-    return 0;
-  }
-  return Array.from({ length: number + 1 }, (v, i) => i).filter((el) => el % 2)
-    .length;
+  // if (number < 0) {
+  //   return 0;
+  // }
+  return Array.from({ length: Math.abs(number) + 1 }, (v, i) => i).filter(
+    (el) => el % 2
+  ).length;
 }
 
 module.exports = {
