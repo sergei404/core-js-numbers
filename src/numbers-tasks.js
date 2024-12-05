@@ -278,7 +278,7 @@ function getFibonacciNumber(index) {
   if (index === 1 || index === 2) {
     return 1;
   }
-  return ((1 + index) * index) / 2;
+  return getFibonacciNumber(index - 1) + getFibonacciNumber(index - 2);
 }
 
 /**
@@ -631,12 +631,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  // if (number < 0) {
-  //   return 0;
-  // }
-  return Array.from({ length: Math.abs(number) + 1 }, (v, i) => i).filter(
-    (el) => el % 2
-  ).length;
+  return Math.ceil(Math.abs(number / 2));
 }
 
 module.exports = {
